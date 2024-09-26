@@ -1,29 +1,17 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+    <flux:heading size="xl" class="mb-6">
+        {{__('Profile')}}
+    </flux:heading>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.update-profile-information-form />
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.update-password-form />
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.delete-user-form />
-                </div>
-            </div>
-        </div>
+    <div class="space-y-6">
+        <flux:card>
+            <livewire:profile.update-profile-information-form/>
+        </flux:card>
+        <flux:card>
+            <livewire:profile.update-password-form/>
+        </flux:card>
+        <flux:card>
+            <livewire:profile.delete-user-form/>
+        </flux:card>
     </div>
 </x-app-layout>

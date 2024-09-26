@@ -1,11 +1,11 @@
 <?php
 
+use Flux\Flux;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
-{
+new #[Layout('layouts.guest')] class extends Component {
     public string $email = '';
 
     /**
@@ -32,30 +32,24 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->reset('email');
 
-        session()->flash('status', __($status));
+        Flux::toast(__($status));
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+<div class="space-y-6">
+    <flux:subheading>
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    </flux:subheading>
 
     <form wire:submit="sendPasswordResetLink">
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <x-flux::input :label="__('Email')" wire:model="email" id="email" class="block mt-1 w-full" type="email"
+                       name="email" required autofocus/>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+            <x-flux::button type="submit">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </x-flux::button>
         </div>
     </form>
 </div>
